@@ -1,6 +1,8 @@
 const router = require("express").Router();
+
 const passport = require("passport");
 const { adminValidate } = require("../middlewares/role.middleware");
+const { getUserRecipes } = require("../recipes/recipes.services");
 const userServices = require("./users.services");
 
 //Middlewares
@@ -25,6 +27,12 @@ router
 	);
 
 // TODO Agregar la ruta para las recetas
+
+router.get(
+	"/me/my_recipes",
+	passport.authenticate("jwt", { session: false }),
+	getUserRecipes
+);
 
 router
 	.route("/:id")
