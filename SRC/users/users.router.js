@@ -10,7 +10,6 @@ require("../middlewares/auth.midddleware")(passport);
 
 router.get(
 	"/",
-	passport.authenticate("jwt", { session: false }),
 	userServices.getAllUsers
 );
 
